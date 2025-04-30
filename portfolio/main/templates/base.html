@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio - Home{% endblock title %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extrahead %}
+    {% endblock extrahead %}
+</head>
+
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="burger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <nav class="nav-wrapper">
+                <ul class="nav-menu">
+                    <li><a href="/home" class="nav-link">Home</a></li>
+                    <li><a href="/projects" class="nav-link">Projects</a></li>
+                    <li><a href="/contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        {% block content %}
+        {% endblock content %}
+    </main>
+    
+    <footer class="footer">
+        © 2025 Жамал Балаев. Все права защищены.
+    </footer>
+
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block scripts %}
+        
+    {% endblock scripts %}
+</body>
+
+</html>

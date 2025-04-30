@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock title %}
+
+{%block extrahead %}
+{{ super }}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{%endblock extrahead %}
+
+
+{% block content %}
+    <!-- Секция резюме -->
+    {% if resume %}
+    <section class="resume-section">
+        <div class="resume-header">
+            {% if resume.images.first %}
+            <img src="{{ resume.images.first.image.url }}" alt="{{ resume.name }} {{ resume.surname }}" class="resume-photo">
+            {% endif %}
+            <div class="resume-info">
+                <h1>{{ resume.name }} {{ resume.surname }}</h1>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> {{ resume.email }}</p>                    
+                    {% for link in resume.resume_links.all %}
+                    <p>
+                        <strong>{{ link.name }}:</strong> 
+                        <a href="{{ link.url }}" target="_blank">{{ link.url }}</a>
+                    </p>
+                    {% endfor %}
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resume-about">
+            <h2>About Me</h2>
+            <p>{{ resume.about }}</p>
+        </div>
+        
+        <div class="resume-skills">
+            <h2>Skills</h2>
+            <div class="tags-list">
+                {% for skill in resume.skills.all %}
+                    <span class="tag">{{ skill.name }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        
+        {% if resume.links.all %}
+        <div class="resume-links">
+            <h2>Links</h2>
+            <ul>
+                {% for link in resume.links.all %}
+                    <li><a href="{{ link.link }}" target="_blank">{{ link.link }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </section>
+    {% endif %}
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}
